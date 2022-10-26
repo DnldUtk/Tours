@@ -16,24 +16,13 @@ using System.Windows.Shapes;
 namespace UPHotel
 {
     /// <summary>
-    /// Логика взаимодействия для HotelsPage.xaml
+    /// Логика взаимодействия для AuthorizePage.xaml
     /// </summary>
-    public partial class MainPage : Page
+    public partial class AuthorizePage : Page
     {
-       
-        public MainPage()
+        public AuthorizePage()
         {
             InitializeComponent();
-        }
-
-        private void ToursButton_Click(object sender, RoutedEventArgs e)
-        {
-            Manager.MngrMainFrame.Navigate(new ToursPage());
-        }
-    
-        private void HotelsButton_Click(object sender, RoutedEventArgs e)
-        {
-            Manager.MngrMainFrame.Navigate(new HotelPage());
         }
     }
 }

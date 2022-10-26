@@ -18,9 +18,9 @@ namespace UPHotel
     /// <summary>
     /// Логика взаимодействия для BookingPage.xaml
     /// </summary>
-    public partial class BookingPage : Page
+    public partial class HotelPage : Page
     {
-        public BookingPage()
+        public HotelPage()
         {
             InitializeComponent();
             //DGridHotels.ItemsSource = UPEntities2.GetContext().Hotels.ToList();
@@ -28,7 +28,7 @@ namespace UPHotel
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            Manager.MngrMainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Hotel));
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
@@ -38,7 +38,21 @@ namespace UPHotel
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            var HotelsForRemoving = DGridHotels.SelectedItems.Cast<Hotel>().ToList();
+            if (MessageBox.Show($"Вы уверены удалить следующие {HotelsForRemoving.Count()} элементов?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    UPEntities2.GetContext().Hotels.RemoveRange(HotelsForRemoving);
+                    UPEntities2.GetContext().SaveChanges();
+                    MessageBox.Show("Данные удалены!");
+                    DGridHotels.ItemsSource = UPEntities2.GetContext().Hotels.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
         }
 
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)

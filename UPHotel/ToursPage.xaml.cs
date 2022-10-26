@@ -16,24 +16,15 @@ using System.Windows.Shapes;
 namespace UPHotel
 {
     /// <summary>
-    /// Логика взаимодействия для HotelsPage.xaml
+    /// Логика взаимодействия для ToursPage.xaml
     /// </summary>
-    public partial class MainPage : Page
+    public partial class ToursPage : Page
     {
-       
-        public MainPage()
+        public ToursPage()
         {
             InitializeComponent();
-        }
-
-        private void ToursButton_Click(object sender, RoutedEventArgs e)
-        {
-            Manager.MngrMainFrame.Navigate(new ToursPage());
-        }
-    
-        private void HotelsButton_Click(object sender, RoutedEventArgs e)
-        {
-            Manager.MngrMainFrame.Navigate(new HotelPage());
+            var currentTours = UPEntities2.GetContext().Tours.ToList();
+            LViewTours.ItemsSource = currentTours;
         }
     }
 }

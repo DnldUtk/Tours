@@ -10,7 +10,7 @@ namespace UPHotel
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new HotelsPage());
+            MainFrame.Navigate(new MainPage());
             Manager.MngrMainFrame = MainFrame;
             //ImportTours();
         }
